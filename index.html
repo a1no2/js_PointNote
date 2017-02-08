@@ -5,141 +5,65 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>得点</title>
 	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		td {
+			text-align: right;
+		}
+	</style>
 	<script>
-	window.onload = onload();
-
-	function onload(){
-		
-	}
-
-
-
-	//こば、さたけ、どひ、けん
 	var totalPoint = [
 		["player01","player02","player03","player04","player05"],
 		[0,0,0,0,0]		//合計
 	];
+	var point_element = new Array();
+
+
+	var totalPoint_element = new Array();
+
+
 	function aa () {
+		point_element[0] = document.getElementById("player01");
+		point_element[1] = document.getElementById("player02");
+		point_element[2] = document.getElementById("player03");
+		point_element[3] = document.getElementById("player04");
+		point_element[4] = document.getElementById("player05");
+
+		totalPoint_element[0] = document.getElementById("player01_goukei");
+		totalPoint_element[1] = document.getElementById("player02_goukei");
+		totalPoint_element[2] = document.getElementById("player03_goukei");
+		totalPoint_element[3] = document.getElementById("player04_goukei");
+		totalPoint_element[4] = document.getElementById("player05_goukei");
+
 		var tr = document.createElement("tr");
-
-		//01
-		if (document.js.player01.value != "") {
-			totalPoint[1][0] += Number(document.getElementById("player01").value);
-			var player01 = Number(document.getElementById("player01").value);
-			document.getElementById("player01").value = "";
-		} else {
-			totalPoint[1][0] += 0;
-			var player01 = 0;
+		for (var i = 0; i < point_element.length; i++) {
+			tr.appendChild(scoreAdd(i));
 		}
-		var player01_td = document.createElement("td");
-		// player01_td.appendChild(document.createTextNode(totalPoint[1][0]));
-		player01_td.appendChild(document.createTextNode(player01));		//このセットのぽいんと
-		tr.appendChild(player01_td);
-		document.getElementById("player01_goukei").textContent = "合計：" + totalPoint[1][0];
-		console.log("player01");
-		console.log(player01);
-		console.log(totalPoint[1][0]);
-
-
-		//02
-		if (document.js.player02.value != "") {
-			totalPoint[1][1] += Number(document.getElementById("player02").value);
-			var player02 = Number(document.getElementById("player02").value);
-			document.getElementById("player02").value = "";
-		} else {
-			totalPoint[1][1] += 0;
-			var player02 = 0;
-		}
-		var player02_td = document.createElement("td");
-		// player02_td.appendChild(document.createTextNode(totalPoint[1][1]));
-		player02_td.appendChild(document.createTextNode(player02));
-		tr.appendChild(player02_td);
-		document.getElementById("player02_goukei").textContent = "合計：" + totalPoint[1][1];
-		console.log("player02");
-		console.log(player02);
-		console.log(totalPoint[1][1]);
-
-		//03
-		if (document.js.player03.value != "") {
-			totalPoint[1][2] += Number(document.getElementById("player03").value);
-			var player03 = Number(document.getElementById("player03").value);
-			document.getElementById("player03").value = "";
-		} else {
-			totalPoint[1][2] += 0;
-			var player03 = 0;
-		}
-		var player03_td = document.createElement("td");
-		// player03_td.appendChild(document.createTextNode(totalPoint[1][2]));
-		player03_td.appendChild(document.createTextNode(player03));
-		tr.appendChild(player03_td);
-		document.getElementById("player03_goukei").textContent = "合計：" + totalPoint[1][2];
-		console.log("player03");
-		console.log(player03);
-		console.log(totalPoint[1][2]);
-
-		//04
-		if (document.js.player04.value != "") {
-			totalPoint[1][3] += Number(document.getElementById("player04").value);
-			var player04 = Number(document.getElementById("player04").value);
-			document.getElementById("player04").value = "";
-		} else {
-			totalPoint[1][3] += 0;
-			var player04 = 0;
-		}
-		var player04_td = document.createElement("td");
-		player04_td.appendChild(document.createTextNode(player04));
-		tr.appendChild(player04_td);
-		document.getElementById("player04_goukei").textContent = "合計：" + totalPoint[1][3];
-		console.log("player04");
-		console.log(player04);
-		console.log(totalPoint[1][3]);
-
-
-		//05
-		if (document.js.player05.value != "") {
-			totalPoint[1][4] += Number(document.getElementById("player05").value);
-			var player05 = Number(document.getElementById("player05").value);
-			document.getElementById("player05").value = "";
-		} else {
-			totalPoint[1][4] += 0;
-			var player05 = 0;
-		}
-		var player05_td = document.createElement("td");
-		player05_td.appendChild(document.createTextNode(player05));
-		tr.appendChild(player05_td);
-		document.getElementById("player05_goukei").textContent = "合計：" + totalPoint[1][4];
-		console.log("player05");
-		console.log(player05);
-		console.log(totalPoint[1][4]);
-
-
-
 
 		document.getElementById("point_table").appendChild(tr);
-		
-
-
 	}
 
 
-	// function iii(num){
-	// 	if (document.js.(totalPoint[0][num]).value != "") {
-	// 		totalPoint[1][num] += Number(document.getElementById(totalPoint[0][num]).value);
-	// 		var point = Number(document.getElementById(totalPoint[0][num]).value);
-	// 		document.getElementById(totalPoint[0][num]).value = "";
-	// 	} else {
-	// 		totalPoint[1][num] += 0;
-	// 		var point = 0;
-	// 	}
-	// 	var td = document.createElement("td");
-	// 	// player01_td.appendChild(document.createTextNode(totalPoint[1][0]));
-	// 	td.appendChild(document.createTextNode(point));		//このセットのぽいんと
-	// 	tr.appendChild(td);
-	// 	document.getElementById("player01_goukei").textContent = "合計：" + totalPoint[1][num];
-	// 	console.log(totalPoint[0][num]);
-	// 	console.log(point);
-	// 	console.log(totalPoint[1][num]);
-	// }
+	//テキストボックスから数字とってtdに入れて返す
+	function scoreAdd(num){
+		if (point_element[num].value != "") {
+			totalPoint[1][num] += Number(point_element[num].value);
+			var player = Number(point_element[num].value);
+		} else {
+			totalPoint[1][num] += 0;
+			var player = 0;
+		}
+		point_element[num].value = "";
+		var td = document.createElement("td");
+		td.appendChild(document.createTextNode(player));
+		totalPoint_element[num].textContent = "合計：" + totalPoint[1][num];
+
+		console.log("player0" + num);
+		console.log(player);
+		console.log("合計:" + totalPoint[1][num]);
+		return td;
+	}
+
+
 	</script>
 </head>
 <body>
